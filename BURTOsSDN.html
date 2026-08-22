@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BURTON FOUNDATION | Empowering Communities & Educational Initiatives</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0a0f1d',
+                            950: '#050811'
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(10, 15, 29, 0.85) 0%, rgba(10, 15, 29, 0.95) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .glass-card-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-amber-500 selection:text-white">
+
+    <!-- Announcement Bar -->
+    <div class="bg-navy-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center gap-1.5 text-amber-500 font-semibold">
+                    <i class="fa-solid fa-certificate"></i> Official 501(c)(3) Public Charity
+                </span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span class="hidden sm:inline">EIN: <strong class="text-white">133975899</strong></span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span class="hidden sm:inline">Ruling Date: <strong class="text-white">April 2013</strong></span>
+            </div>
+            <div class="flex items-center space-x-4 text-slate-400">
+                <a href="mailto:contact@BURTOsSDN.my.id" class="hover:text-amber-400 transition flex items-center gap-1">
+                    <i class="fa-regular fa-envelope"></i> contact@BURTOsSDN.my.id
+                </a>
+                <span><i class="fa-solid fa-location-dot"></i> New York, NY</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 bg-navy-900 text-amber-500 flex items-center justify-center rounded-xl shadow-md font-serif font-bold text-2xl group-hover:bg-amber-500 group-hover:text-navy-950 transition-all duration-300">
+                    BF
+                </div>
+                <div>
+                    <span class="font-serif font-extrabold text-xl tracking-wider text-navy-900 block leading-none">BURTON</span>
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-amber-600 uppercase">Foundation Inc.</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                <a href="#about" class="hover:text-amber-600 transition">About Us</a>
+                <a href="#programs" class="hover:text-amber-600 transition">Our Pillars</a>
+                <a href="#grants" class="hover:text-amber-600 transition">Grant Programs</a>
+                <a href="#transparency" class="hover:text-amber-600 transition">IRS Transparency</a>
+                <a href="#contact" class="hover:text-amber-600 transition">Contact</a>
+            </nav>
+
+            <!-- Header Action Buttons -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <button onclick="openGrantModal()" class="border border-slate-300 hover:border-navy-900 text-navy-900 text-xs uppercase font-bold tracking-wider px-4 py-2.5 rounded-lg transition">
+                    Apply for Grant
+                </button>
+                <button onclick="openDonateModal()" class="bg-amber-500 hover:bg-amber-600 text-navy-950 font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-lg shadow-md transition transform hover:-translate-y-0.5">
+                    Make a Grant / Support
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-800 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-6 py-4 space-y-3 text-sm font-semibold">
+            <a href="#about" class="block text-slate-700 hover:text-amber-600">About Us</a>
+            <a href="#programs" class="block text-slate-700 hover:text-amber-600">Our Pillars</a>
+            <a href="#grants" class="block text-slate-700 hover:text-amber-600">Grant Programs</a>
+            <a href="#transparency" class="block text-slate-700 hover:text-amber-600">IRS Transparency</a>
+            <a href="#contact" class="block text-slate-700 hover:text-amber-600">Contact</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <button onclick="openGrantModal()" class="w-full text-center border border-navy-900 text-navy-900 py-2 rounded-lg font-bold">Apply for Grant</button>
+                <button onclick="openDonateModal()" class="w-full text-center bg-amber-500 text-navy-950 py-2 rounded-lg font-bold">Support Us</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Visual Overlay -->
+    <section class="relative bg-navy-950 text-white min-h-[620px] flex items-center overflow-hidden">
+        <!-- Background Visual Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/16333724252622301811_0" 
+                 alt="Burton Foundation Community Volunteers" 
+                 class="w-full h-full object-cover object-center opacity-30 transform scale-105 filter brightness-90">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-8 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+                        <i class="fa-solid fa-award"></i> Established April 2013 • New York Foundation
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] text-white">
+                        Dedicated to Empowering <span class="text-amber-400">Communities</span> & Advancing <span class="text-amber-400">Education</span>.
+                    </h1>
+                    
+                    <p class="text-slate-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
+                        BURTON FOUNDATION is a non-profit philanthropic organization based in Manhattan, NYC. We provide direct grants, educational funding, and strategic resources to community-driven initiatives nationwide.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap gap-4 items-center">
+                        <a href="#grants" class="bg-amber-500 hover:bg-amber-600 text-navy-950 px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wider shadow-lg transition flex items-center gap-2">
+                            Explore Grant Initiatives <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#transparency" class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 px-7 py-4 rounded-xl font-semibold text-sm transition">
+                            View IRS Compliance Record
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Quick Details Floating Card -->
+                <div class="lg:col-span-4">
+                    <div class="glass-card-dark p-8 rounded-2xl shadow-2xl space-y-6">
+                        <h3 class="font-serif text-xl font-bold text-white border-b border-slate-700/80 pb-4 flex items-center justify-between">
+                            <span>Key Facts</span>
+                            <span class="text-xs font-sans text-amber-400 uppercase font-semibold">Active Status</span>
+                        </h3>
+                        
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-building-columns text-amber-400 mt-1"></i>
+                                <div>
+                                    <strong class="text-white block">Official Name</strong>
+                                    BURTON FOUNDATION
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-fingerprint text-amber-400 mt-1"></i>
+                                <div>
+                                    <strong class="text-white block">Federal Tax ID (EIN)</strong>
+                                    <span class="font-mono text-amber-300">133975899</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-map-pin text-amber-400 mt-1"></i>
+                                <div>
+                                    <strong class="text-white block">Headquarters Address</strong>
+                                    352 Seventh Avenue, Suite 1501<br>New York, NY 10001
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-envelope text-amber-400 mt-1"></i>
+                                <div>
+                                    <strong class="text-white block">Official Email</strong>
+                                    contact@BURTOsSDN.my.id
+                                </div>
+                            </li>
+                        </ul>
+
+                        <button onclick="openDonateModal()" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-amber-400 font-bold py-3 rounded-xl transition text-xs uppercase tracking-widest flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-heart text-red-500"></i> Partner & Contribute
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats Bar -->
+    <section class="bg-navy-900 border-y border-slate-800 text-white py-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div class="p-4 border-r border-slate-800 last:border-none">
+                <div class="font-serif text-3xl lg:text-4xl font-bold text-amber-400 mb-1">$14.8M+</div>
+                <div class="text-xs uppercase font-semibold text-slate-400 tracking-wider">Total Grants Awarded</div>
+            </div>
+            <div class="p-4 border-r border-slate-800 last:border-none">
+                <div class="font-serif text-3xl lg:text-4xl font-bold text-amber-400 mb-1">11+ Years</div>
+                <div class="text-xs uppercase font-semibold text-slate-400 tracking-wider">IRS 501(c)(3) Service</div>
+            </div>
+            <div class="p-4 border-r border-slate-800 last:border-none">
+                <div class="font-serif text-3xl lg:text-4xl font-bold text-amber-400 mb-1">180+</div>
+                <div class="text-xs uppercase font-semibold text-slate-400 tracking-wider">Community Programs Funded</div>
+            </div>
+            <div class="p-4">
+                <div class="font-serif text-3xl lg:text-4xl font-bold text-amber-400 mb-1">100%</div>
+                <div class="text-xs uppercase font-semibold text-slate-400 tracking-wider">Transparent Governance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Foundation Section -->
+    <section id="about" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/2471009544518642294_0" 
+                         alt="Philanthropic Community Support" 
+                         class="w-full h-[420px] object-cover">
+                </div>
+                <!-- Floating Info Badge -->
+                <div class="absolute -bottom-6 -right-6 bg-navy-900 text-white p-6 rounded-2xl shadow-2xl border border-slate-700 max-w-xs hidden sm:block">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fa-solid fa-shield-halved text-amber-400 text-2xl"></i>
+                        <span class="font-serif font-bold text-sm">Public Trust & Ethics</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">Operating in full compliance with IRS guidelines under ruling number 201304.</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Our Organizational Mission</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 leading-tight">
+                    Fostering Long-term Social Mobility through Targeted Support
+                </h2>
+                <p class="text-slate-600 leading-relaxed text-base">
+                    Founded in New York in 2013, <strong>BURTON FOUNDATION</strong> was established to bridge systemic gaps in educational access, social support networks, and community enrichment. We work alongside grassroots non-profits, academic institutions, and civic organizations to deliver sustainable, direct-impact solutions.
+                </p>
+                
+                <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                    <div class="p-4 bg-slate-100 rounded-xl border border-slate-200">
+                        <div class="text-amber-600 text-xl font-bold mb-1"><i class="fa-solid fa-handshake-angle"></i> Grants & Aid</div>
+                        <p class="text-xs text-slate-600">Disbursing strategic funding to verified non-profits and community leaders.</p>
+                    </div>
+                    <div class="p-4 bg-slate-100 rounded-xl border border-slate-200">
+                        <div class="text-amber-600 text-xl font-bold mb-1"><i class="fa-solid fa-graduation-cap"></i> Education Access</div>
+                        <p class="text-xs text-slate-600">Empowering underserved youth through scholarships and workshop grants.</p>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="#transparency" class="text-navy-900 font-bold text-sm hover:text-amber-600 transition inline-flex items-center gap-2">
+                        Download Our Annual Compliance Statement <i class="fa-solid fa-file-pdf text-red-500"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Pillars / Programs Section with Rich Visual Cards -->
+    <section id="programs" class="py-20 bg-slate-100 border-y border-slate-200 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Strategic Philanthropy</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900">Our Core Focus Areas</h2>
+                <p class="text-slate-600">We concentrate our efforts on three primary pillars designed to maximize measurable community impact and create generational change.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1: Education -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 flex flex-col group hover:-translate-y-1 transition duration-300">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/4921663063836864976_0" 
+                             alt="Educational Workshops and STEM Learning" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-navy-900 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Pillar I</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">Youth & Education Grants</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Supporting after-school enrichment programs, STEM learning kits, and higher education access for underprivileged students in urban communities.
+                            </p>
+                        </div>
+                        <button onclick="openGrantModal()" class="text-left font-bold text-xs uppercase text-amber-600 group-hover:text-navy-900 transition flex items-center gap-2">
+                            Request Educational Funding <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Community Development -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 flex flex-col group hover:-translate-y-1 transition duration-300">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/16333724252622301811_0" 
+                             alt="Community Outreach Initiatives" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-navy-900 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Pillar II</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">Community Welfare & Relief</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Funding local food security initiatives, housing assistance support, and emergency neighborhood revitalization funds across New York.
+                            </p>
+                        </div>
+                        <button onclick="openGrantModal()" class="text-left font-bold text-xs uppercase text-amber-600 group-hover:text-navy-900 transition flex items-center gap-2">
+                            Explore Welfare Grants <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Civic & Cultural Arts -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 flex flex-col group hover:-translate-y-1 transition duration-300">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/2471009544518642294_0" 
+                             alt="Cultural and Civic Development" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-navy-900 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase">Pillar III</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">Civic Engagement & Arts</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Championing public arts projects, cultural preservation, and civic advocacy workshops that foster inclusivity and creative expression.
+                            </p>
+                        </div>
+                        <button onclick="openGrantModal()" class="text-left font-bold text-xs uppercase text-amber-600 group-hover:text-navy-900 transition flex items-center gap-2">
+                            View Cultural Initiatives <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grant Cycle & Application Section -->
+    <section id="grants" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="bg-navy-950 text-white rounded-3xl p-8 lg:p-14 shadow-2xl relative overflow-hidden">
+            <div class="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                        Grant Application Cycle 2026-2027
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight">
+                        Applying for a Burton Foundation Grant
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        We accept grant proposals from qualified 501(c)(3) public charities, non-profit community groups, and educational organizations on a rolling quarterly basis.
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white text-sm block">Quarterly Board Review</strong>
+                                <span class="text-xs text-slate-400">Applications reviewed in March, June, September, and December.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white text-sm block">Grant Ranges</strong>
+                                <span class="text-xs text-slate-400">Micro-grants from $5,000 to Major Program Grants up to $150,000.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button onclick="openGrantModal()" class="bg-amber-500 hover:bg-amber-600 text-navy-950 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider transition">
+                            Submit Initial Grant Letter of Inquiry
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Process Steps -->
+                <div class="lg:col-span-5 bg-slate-900/90 border border-slate-800 p-6 rounded-2xl space-y-4">
+                    <h4 class="font-serif text-lg font-bold text-white border-b border-slate-800 pb-3">4-Step Application Process</h4>
+                    
+                    <div class="flex items-start gap-3 text-sm">
+                        <span class="w-7 h-7 bg-amber-500 text-navy-950 rounded-full font-bold flex items-center justify-center shrink-0">1</span>
+                        <div>
+                            <strong class="text-white block">Letter of Inquiry (LOI)</strong>
+                            <p class="text-xs text-slate-400">Submit online summary of your project & budget.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <span class="w-7 h-7 bg-slate-800 text-slate-300 rounded-full font-bold flex items-center justify-center shrink-0">2</span>
+                        <div>
+                            <strong class="text-white block">Eligibility & Compliance Check</strong>
+                            <p class="text-xs text-slate-400">Verification of IRS 501(c)(3) tax status.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <span class="w-7 h-7 bg-slate-800 text-slate-300 rounded-full font-bold flex items-center justify-center shrink-0">3</span>
+                        <div>
+                            <strong class="text-white block">Full Proposal Invitation</strong>
+                            <p class="text-xs text-slate-400">Shortlisted candidates submit detailed financial plans.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm">
+                        <span class="w-7 h-7 bg-slate-800 text-slate-300 rounded-full font-bold flex items-center justify-center shrink-0">4</span>
+                        <div>
+                            <strong class="text-white block">Award & Disbursal</strong>
+                            <p class="text-xs text-slate-400">Board approval and grant release.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Official IRS Tax Exemption Transparency Portal -->
+    <section id="transparency" class="py-20 bg-slate-50 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 space-y-3">
+                <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Public Governance & Verification</span>
+                <h2 class="font-serif text-3xl font-bold text-navy-900">IRS Tax-Exempt Status & Entity Details</h2>
+                <p class="text-slate-600 text-sm max-w-2xl mx-auto">
+                    In compliance with federal regulations, BURTON FOUNDATION maintains complete financial disclosure and public accessibility for all tax exemption documentation.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+                <div class="bg-navy-900 text-white p-6 flex flex-wrap justify-between items-center gap-4 border-b border-slate-800">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-shield-heart text-amber-400 text-2xl"></i>
+                        <div>
+                            <h3 class="font-serif font-bold text-lg">Official Registry Record</h3>
+                            <p class="text-xs text-slate-400">United States Internal Revenue Service (IRS)</p>
+                        </div>
+                    </div>
+                    <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                        Verified Tax-Exempt Entity
+                    </span>
+                </div>
+
+                <div class="divide-y divide-slate-200 text-sm">
+                    <div class="p-5 sm:p-6 grid sm:grid-cols-3 gap-2 hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-500">Legal Name</span>
+                        <span class="sm:col-span-2 font-bold text-navy-900">BURTON FOUNDATION</span>
+                    </div>
+                    <div class="p-5 sm:p-6 grid sm:grid-cols-3 gap-2 hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-500">Employer Identification Number (EIN)</span>
+                        <span class="sm:col-span-2 font-mono font-bold text-amber-600 text-base">133975899</span>
+                    </div>
+                    <div class="p-5 sm:p-6 grid sm:grid-cols-3 gap-2 hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-500">IRS Exemption Status</span>
+                        <span class="sm:col-span-2 text-slate-800 font-semibold">
+                            501(c)(3) Tax-Exempt Non-Profit Organization (Ruling Date: 201304 / April 2013)
+                        </span>
+                    </div>
+                    <div class="p-5 sm:p-6 grid sm:grid-cols-3 gap-2 hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-500">Registered Office Address</span>
+                        <span class="sm:col-span-2 text-slate-800 font-semibold">
+                            352 SEVENTH AVENUE, Suite 1501, NEW YORK, NY 10001
+                        </span>
+                    </div>
+                    <div class="p-5 sm:p-6 grid sm:grid-cols-3 gap-2 hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-500">Official Web Domain</span>
+                        <span class="sm:col-span-2 font-mono text-indigo-600 font-bold">BURTOsSDN.my.id</span>
+                    </div>
+                    <div class="p-5 sm:p-6 grid sm:grid-cols-3 gap-2 hover:bg-slate-50 transition">
+                        <span class="font-bold text-slate-500">Administrative Email</span>
+                        <span class="sm:col-span-2 font-medium text-slate-800">contact@BURTOsSDN.my.id</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="contact" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-12 gap-12">
+            <!-- Left Contact Info -->
+            <div class="lg:col-span-5 space-y-8">
+                <div>
+                    <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+                    <h2 class="font-serif text-3xl font-bold text-navy-900 mt-2">New York Headquarters</h2>
+                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                        Our administrative office is located in Midtown Manhattan. Please reach out for grant inquiries, partnership requests, or financial compliance information.
+                    </p>
+                </div>
+
+                <!-- Headquarters Location Visual Image -->
+                <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md h-48 relative">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/1084127053230592809_0" 
+                         alt="352 Seventh Avenue Manhattan Headquarters" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-navy-900/40 flex items-end p-4">
+                        <span class="text-white text-xs font-semibold bg-navy-950/80 px-3 py-1 rounded-lg border border-slate-700">
+                            <i class="fa-solid fa-building"></i> 352 Seventh Ave, Suite 1501, NY 10001
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-amber-500/10 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <strong class="text-navy-900 block font-bold">Mailing Address</strong>
+                            <p class="text-slate-600">BURTON FOUNDATION<br>352 SEVENTH AVENUE Suite 1501<br>NEW YORK, NY 10001, United States</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-amber-500/10 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong class="text-navy-900 block font-bold">Official Electronic Mail</strong>
+                            <a href="mailto:contact@BURTOsSDN.my.id" class="text-amber-600 hover:underline font-semibold">contact@BURTOsSDN.my.id</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Interactive Form -->
+            <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xl">
+                <h3 class="font-serif text-2xl font-bold text-navy-900 mb-6">Send an Administrative Inquiry</h3>
+                
+                <form onsubmit="handleContactSubmit(event)" class="space-y-5">
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Your Full Name</label>
+                            <input type="text" required placeholder="e.g. Eleanor Vance" class="w-full border border-slate-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email Address</label>
+                            <input type="email" required placeholder="name@organization.org" class="w-full border border-slate-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Organization Name</label>
+                            <input type="text" placeholder="Non-profit or Institution" class="w-full border border-slate-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Inquiry Type</label>
+                            <select class="w-full border border-slate-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <option>Grant Inquiry / Application</option>
+                                <option>IRS 990 Tax Records Request</option>
+                                <option>Corporate Partnership</option>
+                                <option>General Administrative</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Message</label>
+                        <textarea rows="4" required placeholder="Please outline your inquiry or grant concept..." class="w-full border border-slate-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-amber-400 font-bold py-3.5 rounded-xl text-sm uppercase tracking-wider transition shadow-md">
+                        Transmit Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 text-slate-400 text-xs py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 mb-8">
+            <div class="md:col-span-2 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-amber-500 text-navy-950 font-serif font-bold text-lg flex items-center justify-center rounded">BF</div>
+                    <span class="font-serif font-bold text-lg text-white">BURTON FOUNDATION</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed max-w-sm">
+                    A registered 501(c)(3) tax-exempt organization (EIN: 133975899). Dedicated to educational enhancement, local community relief, and non-profit grantmaking since April 2013.
+                </p>
+                <div class="text-slate-500">
+                    Address: 352 Seventh Avenue, Suite 1501, New York, NY 10001
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase text-slate-200 mb-3 tracking-wider">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="hover:text-amber-400">About Foundation</a></li>
+                    <li><a href="#programs" class="hover:text-amber-400">Philanthropic Pillars</a></li>
+                    <li><a href="#grants" class="hover:text-amber-400">Grant Application</a></li>
+                    <li><a href="#transparency" class="hover:text-amber-400">IRS Compliance Record</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase text-slate-200 mb-3 tracking-wider">Legal & Compliance</h4>
+                <ul class="space-y-2">
+                    <li><span>IRS Status: 501(c)(3) Public Charity</span></li>
+                    <li><span>EIN: 133975899</span></li>
+                    <li><span>Ruling Date: 201304</span></li>
+                    <li><a href="mailto:contact@BURTOsSDN.my.id" class="text-amber-400 hover:underline">contact@BURTOsSDN.my.id</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500">
+            <p>&copy; 2026 BURTON FOUNDATION. All Rights Reserved.</p>
+            <p>Domain: <span class="font-mono text-slate-400">BURTOsSDN.my.id</span></p>
+        </div>
+    </footer>
+
+    <!-- Grant Inquiry Modal -->
+    <div id="grantModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl relative border border-slate-200">
+            <button onclick="closeGrantModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">Grant Application Portal</h3>
+            <p class="text-xs text-slate-600 mb-6">Submit your organization details for preliminary eligibility evaluation.</p>
+            
+            <form onsubmit="handleGrantSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Organization Legal Name</label>
+                    <input type="text" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Organization Tax ID (EIN)</label>
+                    <input type="text" placeholder="XX-XXXXXXX" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Estimated Grant Amount Requested ($)</label>
+                    <input type="number" placeholder="15000" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Executive Contact Email</label>
+                    <input type="email" required class="w-full border border-slate-300 rounded-lg p-2.5 text-sm">
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-navy-950 font-bold py-3 rounded-lg text-xs uppercase tracking-wider">
+                    Submit Letter of Inquiry
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donateModal" class="fixed inset-0 bg-navy-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl relative border border-slate-200">
+            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-serif text-2xl font-bold text-navy-900 mb-2">Support Burton Foundation</h3>
+            <p class="text-xs text-slate-600 mb-6">Tax-deductible contributions supporting 501(c)(3) initiatives.</p>
+            
+            <div class="space-y-4 text-center">
+                <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 font-medium">
+                    All gifts directly benefit community grantmaking. Contributions are 100% tax-deductible under federal law.
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <button class="border-2 border-amber-500 text-navy-900 font-bold py-2 rounded-lg hover:bg-amber-500 hover:text-navy-950">$100</button>
+                    <button class="border-2 border-slate-200 text-navy-900 font-bold py-2 rounded-lg hover:bg-amber-500 hover:text-navy-950">$500</button>
+                    <button class="border-2 border-slate-200 text-navy-900 font-bold py-2 rounded-lg hover:bg-amber-500 hover:text-navy-950">$2,500</button>
+                </div>
+                <p class="text-xs text-slate-500 pt-2">For wire transfers or donor-advised funds (DAF), please contact: <br><strong class="text-slate-800">contact@BURTOsSDN.my.id</strong></p>
+                <button onclick="alert('Thank you for supporting Burton Foundation! Please contact our office at contact@BURTOsSDN.my.id to finalize donation processing.'); closeDonateModal();" class="w-full bg-navy-900 text-white font-bold py-3 rounded-lg text-xs uppercase tracking-wider">
+                    Proceed with Direct Grant
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modals Logic
+        function openGrantModal() {
+            document.getElementById('grantModal').classList.remove('hidden');
+        }
+        function closeGrantModal() {
+            document.getElementById('grantModal').classList.add('hidden');
+        }
+        function openDonateModal() {
+            document.getElementById('donateModal').classList.remove('hidden');
+        }
+        function closeDonateModal() {
+            document.getElementById('donateModal').classList.add('hidden');
+        }
+
+        // Form Handlers
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for contacting BURTON FOUNDATION. Your administrative inquiry has been transmitted successfully.');
+            e.target.reset();
+        }
+
+        function handleGrantSubmit(e) {
+            e.preventDefault();
+            alert('Your Letter of Inquiry (LOI) has been submitted to the Burton Foundation Grant Review Committee.');
+            closeGrantModal();
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
